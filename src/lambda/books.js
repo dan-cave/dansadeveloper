@@ -28,7 +28,7 @@ function getBooks() {
           retrievePageOfChildren(request, result);
         }
         else {
-          xmlifyResponse(result).then((xml) => resolve(xml));
+          xmlifyResponse(result).then((xml) => resolve(xml)).catch((err) => reject(err));
         }
       }).catch((err) => {
          reject(err);
@@ -44,15 +44,14 @@ function getBooks() {
 }
 
 function xmlifyResponse(response) {
-  string = "<rss><channel><title>Audiobooks</title><link>dansadeveloper.com/.netlify/functions/books</link>";
-
   return new Promise((resolve, reject) => {
+    string = "<rss><channel><title>Audiobooks</title><link>dansadeveloper.com/.netlify/functions/books</link>";
     response.forEach((item, idx) => {
       drive.files.get({ fileId: item.id, auth: auth }).then((res) => {
         string += "<item>";
         string += `<title>${res.data.title}</title>`;
         string += `<enclosure url="https://www.googleapis.com/drive/v3/files/${res.data.id}/?key=${downloadString}&alt=media" type="audio/mpeg"></enclosure>`;
-        string += `<pubDate>${res.data.createdDate.toString()}</pubDate>`
+        string += `<pubDate>${res.data.createdDate}</pubDate>`
         string += "</item>";
         if (idx == response.length - 1) {
           string += "</channel></rss>";
@@ -69,8 +68,7 @@ exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
     callback(null, {
       statusCode: 200,
-      body: JSON.stringify({
-        result: books}),
+      body: books,
     });
   }).catch((err) => {
     callback(null, {
