@@ -9,6 +9,13 @@ const privateKey = process.env.private_key;
 const folderId = process.env.folder_id;
 const downloadString = process.env.download_string;
 
+const secrets = {
+  clientEmail: clientEmail,
+  privateKey: privateKey,
+  folderId: folderId,
+  downloadString: downloadString
+}
+
 const auth = new google.auth.JWT(clientEmail, null, privateKey, scopes);
 const drive = google.drive({ version: 'v2', auth: auth });
 
@@ -67,12 +74,12 @@ exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
     callback(null, {
       statusCode: 200,
-      body: JSON.stringify({books: books})
+      body: secrets
     });
   }).catch((err) => {
     callback(null, {
       statusCode: 500,
-      body: JSON.stringify({error: err.toString()})
+      body: secrets
     });
   });
 };
