@@ -69,7 +69,7 @@ exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
     callback(null, {
       headers: {
-        'Content-Type': 'application/rss+xml',
+        'Content-Type': 'text/xml',
       },
       statusCode: 200,
       body: books
