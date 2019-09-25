@@ -51,7 +51,6 @@ function xmlifyResponse(response) {
         string += "<item>";
         string += `<title>${res.data.title}</title>`;
         string += `<enclosure url="https://www.googleapis.com/drive/v3/files/${res.data.id}/?key=${downloadString}&alt=media" type="audio/mpeg"></enclosure>`;
-        string += `<pubDate>${res.data.createdDate}</pubDate>`
         string += "</item>";
         if (idx == response.length - 1) {
           string += "</channel></rss>";
