@@ -6,9 +6,11 @@
   YARN_VERSION = "1.9.4"
   YARN_FLAGS = "--no-ignore-optional"
 [[headers]]
-for = "/static/*"
-[headers.values]
-  Cache-Control = "public, max-age=360000"
-for = "/.netlify/functions/books"
-[headers.values]
-  Content-Type = "text/xml"
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=360000"
+
+[[headers]]
+  for = "/.netlify/functions/books"
+  [headers.values]
+    Content-Type = "text/xml"
