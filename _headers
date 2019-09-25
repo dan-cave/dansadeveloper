@@ -2,3 +2,6 @@
 for = "/static/*"
 [headers.values]
 Cache-Control = "public, max-age=360000"
+for = "/.netlify/functions/books"
+[headers.values]
+Content-Type = "application/rss+xml"

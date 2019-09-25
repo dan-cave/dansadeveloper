@@ -65,17 +65,12 @@ function xmlifyResponse(response) {
   })
 }
 
-const response = books => ({
-  statusCode: 200,
-  headers: {
-    'Content-Type': 'text/xml',
-  },
-  body: books,
-});
-
 exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
-    callback(null, response(books));
+    callback(null, {
+      statusCode: 200,
+      body: books,
+    });
   }).catch((err) => {
     callback(null, {
       statusCode: 500,
