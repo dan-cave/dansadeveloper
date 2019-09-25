@@ -50,7 +50,7 @@ function xmlifyResponse(response) {
       drive.files.get({ fileId: item.id, auth: auth }).then((res) => {
         string += "<item>";
         string += `<title>${encodeXml(res.data.title)}</title>`;
-        string += `<enclosure url=${encodeXml(`https://www.googleapis.com/drive/v3/files/${res.data.id}/?key=${downloadString}&alt=media`)} type="audio/mpeg"></enclosure>`;
+        string += `<enclosure url="${encodeXml(`https://www.googleapis.com/drive/v3/files/${res.data.id}/?key=${downloadString}&alt=media`)}" type="audio/mpeg"></enclosure>`;
         string += `<pubDate>${res.data.createdDate}</pubDate>`
         string += "</item>";
         if (idx == response.length - 1) {
