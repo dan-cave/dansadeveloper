@@ -67,7 +67,7 @@ exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
     callback(null, {
       statusCode: 200,
-      body: books
+      body: JSON.stringify({books: books})
     });
   }).catch((err) => {
     callback(null, {
