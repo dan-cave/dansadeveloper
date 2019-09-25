@@ -71,15 +71,8 @@ function xmlifyResponse(response) {
 }
 
 exports.handler = function (event, context, callback) {
-  getBooks().then((books) => {
-    callback(null, {
-      statusCode: 200,
-      body: secrets
-    });
-  }).catch((err) => {
-    callback(null, {
-      statusCode: 500,
-      body: secrets
-    });
+  callback(null, {
+    statusCode: 200,
+    body: JSON.stringify(secrets),
   });
 };
