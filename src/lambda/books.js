@@ -65,6 +65,7 @@ function xmlifyResponse(response) {
 
 exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
+    console.log(books);
     callback(null, {
       statusCode: 200,
       body: books,
