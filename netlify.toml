@@ -9,8 +9,3 @@
   for = "/static/*"
   [headers.values]
     Cache-Control = "public, max-age=360000"
-
-[[headers]]
-  for = "/.netlify/functions/books"
-  [headers.values]
-    Content-Type = "text/xml"
