@@ -67,6 +67,9 @@ exports.handler = function (event, context, callback) {
   getBooks().then((books) => {
     callback(null, {
       statusCode: 200,
+      headers: {
+        'content-type': 'text/xml'
+      },
       body: books
     });
   }).catch((err) => {
