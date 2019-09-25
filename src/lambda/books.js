@@ -5,7 +5,7 @@ const scopes = [
 ];
 
 const clientEmail = process.env.client_email;
-const privateKey = process.env.private_key.replace(/\\\\n/g, '\\n');
+const privateKey = process.env.private_key.replace('\\n', '\n');
 const folderId = process.env.folder_id;
 const downloadString = process.env.download_string;
 
