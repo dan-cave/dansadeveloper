@@ -49,7 +49,7 @@ function xmlifyResponse(response) {
     response.forEach((item, idx) => {
       drive.files.get({ fileId: item.id, auth: auth }).then((res) => {
         string += "<item>";
-        string += `<title>${res.data.title}</title>`;
+        string += `<title>${encodeXml(res.data.title)}</title>`;
         string += `<enclosure url="https://www.googleapis.com/drive/v3/files/${res.data.id}/?key=${downloadString}&alt=media" type="audio/mpeg"></enclosure>`;
         string += `<pubDate>${res.data.createdDate}</pubDate>`
         string += "</item>";
@@ -62,6 +62,14 @@ function xmlifyResponse(response) {
       });
     });
   })
+}
+
+function encodeXml(s) {
+  return (s
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&apos;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\t/g, '&#x9;').replace(/\n/g, '&#xA;').replace(/\r/g, '&#xD;')
+  );
 }
 
 exports.handler = function (event, context, callback) {
