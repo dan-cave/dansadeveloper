@@ -4,4 +4,4 @@ for = "/static/*"
 Cache-Control = "public, max-age=360000"
 for = "/.netlify/functions/books"
 [headers.values]
-Content-Type = "application/rss+xml"
+Content-Type = "text/xml"
