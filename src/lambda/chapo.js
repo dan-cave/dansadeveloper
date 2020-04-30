@@ -8,6 +8,11 @@ const feeds = [
 
 let fullJs = {
   rss: {
+    $: {
+      "xmlns:atom": "http://www.w3.org/2005/Atom",
+      "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
+      version: "2.0",
+    },
     channel: [
       {
         title: ["Chapo Trap House"],
@@ -22,7 +27,7 @@ let fullJs = {
         link: ["https://dansadeveloper.com/.netlify/functions/chapo"],
         pubDate: [],
         lastBuildDate: [],
-        item: [],
+        items: [],
       },
     ],
   },
@@ -46,13 +51,13 @@ function combineFeeds() {
           !it.title[0].includes("UNLOCKED") &&
           !it.title[0].includes("Teaser")
         ) {
-          fullJs.rss.channel[0].item.push(it);
+          fullJs.rss.channel[0].items.push(it);
         }
       });
 
       blackWolfJs.rss.channel[0].item.forEach((it) => {
         if (!it.title[0].includes("/r/BlackWolfFeed")) {
-          fullJs.rss.channel[0].item.push(it);
+          fullJs.rss.channel[0].items.push(it);
         }
       });
 
@@ -60,7 +65,10 @@ function combineFeeds() {
         return new Date(b.pubDate[0]) - new Date(a.pubDate[0]);
       });
 
-      const builder = new xml2js.Builder();
+      const builder = new xml2js.Builder({
+        xmldec: { version: "1.0", encoding: "UTF-8" },
+        cdata: true,
+      });
 
       const xml = builder.buildObject(fullJs);
 
