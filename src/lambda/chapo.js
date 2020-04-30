@@ -61,7 +61,7 @@ function combineFeeds() {
         }
       });
 
-      fullJs.rss.channel[0].item.sort((a, b) => {
+      fullJs.rss.channel[0].items.sort((a, b) => {
         return new Date(b.pubDate[0]) - new Date(a.pubDate[0]);
       });
 
