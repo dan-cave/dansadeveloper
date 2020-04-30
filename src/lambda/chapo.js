@@ -69,7 +69,7 @@ function combineFeeds() {
   });
 }
 
-exports.lambdaHandler = function (event, context, callback) {
+exports.handler = function (event, context, callback) {
   combineFeeds()
     .then((feed) => {
       callback(null, {
