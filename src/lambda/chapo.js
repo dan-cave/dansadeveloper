@@ -46,13 +46,13 @@ function combineFeeds() {
           !it.title[0].includes("UNLOCKED") &&
           !it.title[0].includes("Teaser")
         ) {
-          fullJs.rss.channel.push(it);
+          fullJs.rss.channel[0].item.push(it);
         }
       });
 
       blackWolfJs.rss.channel[0].item.forEach((it) => {
         if (!it.title[0].includes("/r/BlackWolfFeed")) {
-          fullJs.rss.channel.push(it);
+          fullJs.rss.channel[0].item.push(it);
         }
       });
 
