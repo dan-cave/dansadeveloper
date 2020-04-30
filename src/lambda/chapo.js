@@ -27,7 +27,7 @@ let fullJs = {
         link: ["https://dansadeveloper.com/.netlify/functions/chapo"],
         pubDate: [],
         lastBuildDate: [],
-        items: [],
+        item: [],
       },
     ],
   },
@@ -51,17 +51,17 @@ function combineFeeds() {
           !it.title[0].includes("UNLOCKED") &&
           !it.title[0].includes("Teaser")
         ) {
-          fullJs.rss.channel[0].items.push(it);
+          fullJs.rss.channel[0].item.push(it);
         }
       });
 
       blackWolfJs.rss.channel[0].item.forEach((it) => {
         if (!it.title[0].includes("/r/BlackWolfFeed")) {
-          fullJs.rss.channel[0].items.push(it);
+          fullJs.rss.channel[0].item.push(it);
         }
       });
 
-      fullJs.rss.channel[0].items.sort((a, b) => {
+      fullJs.rss.channel[0].item.sort((a, b) => {
         return new Date(b.pubDate[0]) - new Date(a.pubDate[0]);
       });
 
