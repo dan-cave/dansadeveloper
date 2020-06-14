@@ -2,7 +2,7 @@ const xml2js = require("xml2js");
 const fetch = require("node-fetch");
 
 const feeds = [
-  `https://www.reddit.com/r/BlackWolfFeed/.rss`,
+  `https://s221659.gridserver.com/blackwolf/rss/`,
   `http://feeds.soundcloud.com/users/soundcloud:users:211911700/sounds.rss`,
 ];
 
